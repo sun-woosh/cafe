@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HALFTONE 하프톤 — 을지로3가 신규 출점 전략</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--night:#100d0b;--night2:#1a1512;--cream:#f2ebe0;--cream2:#e8dfd1;--ink:#16120f;--mut:#8f857b;--mutd:#6e655c;--amber:#d9a066;--ox:#8c2f23;--line:rgba(242,235,224,.14);--lined:#d6ccbc;--serif:"Noto Serif KR",serif;--it:"Instrument Serif",serif;--sans:"Pretendard Variable",Pretendard,"Malgun Gothic",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;font-size:17px}
+body{margin:0;background:var(--night);color:var(--cream);font-family:var(--sans);line-height:1.7;letter-spacing:-.01em;word-break:keep-all;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.num{font-variant-numeric:tabular-nums}
+#bar{position:fixed;top:0;left:0;height:2px;background:var(--amber);width:0;z-index:50}
+nav.ch{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:12px}
+nav.ch a{display:flex;align-items:center;justify-content:flex-end;gap:10px;text-decoration:none;font-size:.7rem;color:var(--mut)}
+nav.ch a span{opacity:0;transform:translateX(6px);transition:.25s}nav.ch a:hover span,nav.ch a.on span{opacity:1;transform:none}
+nav.ch a i{width:7px;height:7px;border-radius:50%;border:1px solid var(--mut);transition:.25s}nav.ch a.on i{background:var(--amber);border-color:var(--amber);transform:scale(1.3)}
+@media(max-width:900px){nav.ch{display:none}}
+.sec{position:relative;min-height:100vh;padding:14vh 8vw;display:flex;flex-direction:column;justify-content:center}
+.sec.cream{background:var(--cream);color:var(--ink)}
+.inner{max-width:1080px;width:100%;margin:0 auto}
+.q{font-family:var(--serif);font-size:clamp(1.3rem,2.4vw,1.9rem);color:var(--mut);margin:0 0 6px}.cream .q{color:var(--mutd)}
+h2{font-family:var(--serif);font-weight:900;font-size:clamp(2.2rem,5.4vw,4.4rem);line-height:1.12;letter-spacing:-.045em;margin:0 0 26px}
+h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:0 0 8px;letter-spacing:-.02em}
+.lede{font-size:clamp(1.05rem,1.5vw,1.25rem);max-width:38em;color:#cfc5b8;margin:0 0 40px}.cream .lede{color:#4a423b}
+.small{font-size:.86rem;color:var(--mut);line-height:1.7}.cream .small{color:var(--mutd)}
+.chno{position:absolute;top:9vh;left:8vw;font-family:var(--it);font-size:.95rem;color:var(--mut)}
+.chno b{font-family:var(--sans);font-size:.68rem;letter-spacing:.3em;margin-left:10px}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 8vw;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20%;background:radial-gradient(40% 35% at 70% 40%,rgba(217,160,102,.22),transparent 70%),radial-gradient(30% 30% at 20% 80%,rgba(140,47,35,.25),transparent 70%);animation:drift 18s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(-4%,3%) scale(1.08)}}
+.hero .top{position:absolute;top:28px;left:8vw;right:8vw;display:flex;justify-content:space-between;font-size:.75rem;letter-spacing:.14em;color:var(--mut)}
+.hero .top b{font-family:var(--it);font-size:1.4rem;font-weight:400;letter-spacing:.02em;color:var(--cream)}
+.hero .kick{position:relative;font-family:var(--it);font-style:italic;font-size:1.5rem;color:var(--amber)}
+.hero h1{position:relative;font-family:var(--serif);font-weight:900;font-size:clamp(2.6rem,7.6vw,6.6rem);line-height:1.06;letter-spacing:-.05em;margin:0}
+.hero h1 em{font-family:var(--it);font-weight:400;color:var(--amber)}
+.hero p{position:relative;color:#bdb2a5;font-size:1.1rem;margin-top:28px;max-width:30em}
+.cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font-size:.7rem;letter-spacing:.3em;color:var(--mut)}
+.answer h2{font-size:clamp(3.4rem,11vw,9.5rem);line-height:.98}
+.answer h2 span{display:block;font-family:var(--it);font-style:italic;font-weight:400;font-size:.32em;color:var(--amber);letter-spacing:0;margin-bottom:12px}
+.brand{display:flex;gap:28px;align-items:center;border:1px solid var(--line);padding:22px 26px;margin:0 0 30px}
+.brand .logo{font-family:var(--it);font-size:clamp(2.4rem,5vw,3.6rem);line-height:1;background:radial-gradient(circle,var(--amber) 1.4px,transparent 1.8px) 0 0/7px 7px;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:1px var(--amber)}
+.brand p{margin:0;font-size:.9rem;color:#cfc5b8}.brand b{color:var(--cream)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.stats div{padding:22px 18px 0 0}.stats b{display:block;font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,3.6vw,3rem);letter-spacing:-.03em;line-height:1.1}.stats span{font-size:.8rem;color:var(--mut)}
+@media(max-width:820px){.stats{grid-template-columns:1fr 1fr}}
+.film{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden;margin-top:14px;border:1px solid var(--line)}
+.scene{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:7%;opacity:0}
+.scene .k{font-family:var(--it);font-style:italic;font-size:clamp(.9rem,1.8vw,1.3rem);color:var(--amber);margin-bottom:auto}
+.scene .t{font-family:var(--serif);font-weight:900;font-size:clamp(1.8rem,5.6vw,4.4rem);line-height:1.1;letter-spacing:-.045em}
+.scene .s{font-size:clamp(.8rem,1.6vw,1.1rem);color:#a89d90;margin-top:14px}
+.film .scene{animation:sc 30s linear infinite both;animation-play-state:paused}.film.play .scene,.film.play .prog{animation-play-state:running}
+.s1{animation-delay:0s}.s2{animation-delay:5s}.s3{animation-delay:10s}.s4{animation-delay:15s}.s5{animation-delay:20s}.s6{animation-delay:25s}
+@keyframes sc{0%{opacity:0;transform:scale(1.04)}3%{opacity:1;transform:none}15%{opacity:1}16.66%{opacity:0}100%{opacity:0}}
+.prog{position:absolute;left:0;bottom:0;height:2px;background:var(--amber);width:0;animation:pg 30s linear infinite;animation-play-state:paused}@keyframes pg{to{width:100%}}
+.fbtn{position:absolute;right:16px;top:14px;z-index:2;background:rgba(0,0,0,.4);border:1px solid #4a423b;color:var(--cream);font:600 .7rem var(--sans);letter-spacing:.2em;padding:7px 13px;cursor:pointer}
+.flabel{font-size:.72rem;letter-spacing:.24em;color:var(--mut);margin-top:56px}
+.funnel{display:grid;grid-template-columns:repeat(4,1fr);margin:10px 0 56px}.funnel div{border-left:1px solid var(--line);padding:0 18px}
+.funnel b{display:block;font-family:var(--serif);font-weight:600;font-size:clamp(2.2rem,5vw,4rem);line-height:1;letter-spacing:-.04em}.funnel div:last-child b{color:var(--amber)}.funnel span{font-size:.8rem;color:var(--mut)}
+.axes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}@media(max-width:820px){.axes,.funnel{grid-template-columns:1fr 1fr}}
+.axis{border:1px solid var(--line);padding:22px 20px;transition:.3s;min-height:210px}.axis:hover{background:var(--night2);border-color:var(--amber)}
+.axis .L{font-family:var(--it);font-size:3.4rem;line-height:1;color:var(--amber)}.axis .w{float:right;font-size:.75rem;color:var(--mut);margin-top:8px}.axis h3{margin-top:12px}.axis p{font-size:.84rem;color:#a89d90;margin:0}
+.multi{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin:6px 0 30px}@media(max-width:820px){.multi{grid-template-columns:1fr}}
+.panel h4{font-family:var(--serif);font-size:1.1rem;margin:0}.panel .sub{font-size:.75rem;color:var(--mut);margin-bottom:24px}
+.bars{display:flex;align-items:flex-end;gap:10px;height:150px;border-bottom:1px solid var(--line)}
+.bars div{flex:1;background:#4a423b;border-radius:4px 4px 0 0;position:relative;height:0;transition:height 1.1s cubic-bezier(.2,.7,.2,1)}.panel.pick .bars div{background:var(--amber)}
+.bars div em{position:absolute;top:-22px;left:0;right:0;text-align:center;font-style:normal;font-size:.78rem}
+.xl{display:flex;gap:10px;font-size:.7rem;color:var(--mut);margin-top:6px}.xl span{flex:1;text-align:center}
+.verdict{font-size:.85rem;margin-top:12px;color:#cfc5b8}.verdict b{color:var(--amber)}
+details.more{border-top:1px solid var(--line);padding-top:14px;margin-top:40px}details.more summary{cursor:pointer;font-size:.85rem;color:var(--amber)}
+table{width:100%;border-collapse:collapse;font-size:.86rem;font-variant-numeric:tabular-nums;margin-top:14px}
+th{font-size:.68rem;letter-spacing:.14em;color:var(--mut);text-align:right;padding:0 8px 10px;border-bottom:1px solid var(--line)}td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right}
+th:nth-child(-n+2),td:nth-child(-n+2){text-align:left}tr.sel td{color:var(--amber);font-weight:700}.cream th{border-color:var(--ink);color:var(--mutd)}.cream td{border-color:var(--lined)}
+.tgrid{display:grid;grid-template-columns:repeat(4,1fr)}@media(max-width:820px){.tgrid{grid-template-columns:1fr 1fr;row-gap:30px}}
+.tgrid>div{border-left:1px solid var(--line);padding:0 20px}.tgrid b{display:block;font-family:var(--serif);font-weight:600;font-size:clamp(2.6rem,5.6vw,4.6rem);line-height:1;letter-spacing:-.04em}
+.tgrid .lb{font-size:.9rem;margin-top:10px}.tgrid .vs{font-size:.76rem;color:var(--mut)}
+.persona{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;margin-top:64px}@media(max-width:820px){.persona{grid-template-columns:1fr}}
+.quote{font-family:var(--serif);font-size:clamp(1.3rem,2.4vw,1.9rem);line-height:1.5;letter-spacing:-.03em}.quote em{font-family:var(--it);color:var(--amber);font-size:1.15em}
+.timeline{display:flex;align-items:flex-end;gap:6px;height:120px;margin-top:28px}.timeline div{flex:1;background:#4a423b;border-radius:3px 3px 0 0;position:relative}.timeline div.pk{background:var(--amber)}.timeline div.op{background:#c0407e}
+.timeline div span{position:absolute;bottom:-22px;left:0;right:0;text-align:center;font-size:.66rem;color:var(--mut)}.timeline div em{position:absolute;top:-20px;left:0;right:0;text-align:center;font-style:normal;font-size:.72rem}
+.store3d{position:relative;height:min(74vh,640px);background:#0b0908;overflow:hidden;border:1px solid var(--line)}
+.store3d canvas{display:block;cursor:grab}.labels3d{position:absolute;inset:0;pointer-events:none}
+.lab3d{background:rgba(16,13,11,.78);color:var(--cream);padding:7px 11px;border-left:2px solid var(--amber);font-size:.72rem;line-height:1.45;white-space:nowrap}.lab3d b{display:block;font-family:var(--serif);font-size:.9rem}.lab3d span{color:#a89d90}
+.ctl3d{position:absolute;left:14px;top:14px;z-index:3;display:flex;flex-wrap:wrap;gap:6px}
+.ctl3d button{background:rgba(16,13,11,.6);color:var(--cream);border:1px solid #3d3631;font:600 .74rem var(--sans);padding:7px 12px;cursor:pointer}.ctl3d button.on{background:var(--amber);border-color:var(--amber);color:var(--night)}
+.hint3d{position:absolute;right:14px;bottom:12px;z-index:3;color:#7d7268;font-size:.7rem;pointer-events:none}
+.mood{display:grid;grid-template-columns:repeat(6,1fr);margin-top:28px}.mood div{aspect-ratio:1/1.15;display:flex;align-items:flex-end;padding:10px;font-size:.68rem;letter-spacing:.06em}@media(max-width:820px){.mood{grid-template-columns:repeat(3,1fr)}}
+.c3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:40px}@media(max-width:820px){.c3{grid-template-columns:1fr}}
+.c3>div{border-top:1px solid var(--line);padding-top:16px}.cream .c3>div{border-color:var(--ink)}.c3 .n{font-family:var(--it);font-size:1.6rem;color:var(--amber);line-height:1}.cream .c3 .n{color:var(--ox)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.8rem;margin:6px 0 10px}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.mix{display:flex;gap:2px;height:48px}.mix div{border-radius:4px;display:flex;align-items:center;padding-left:10px;color:#fff;font-size:.8rem;font-weight:700;width:0;overflow:hidden;white-space:nowrap}
+.mix:hover div{opacity:.45}.mix div:hover{opacity:1}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--cream);font-size:.78rem;padding:8px 11px;opacity:0;z-index:60;line-height:1.5}
+.menuGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:0 26px;margin-top:40px}@media(max-width:820px){.menuGrid{grid-template-columns:1fr 1fr}}
+.mcard{border-top:1px solid var(--ink);padding:14px 0 30px;transition:transform .3s}.mcard:hover{transform:translateY(-4px)}
+.mcard svg{display:block;width:100%;height:160px;margin:6px 0 12px}.mcard .cat{font-size:.66rem;font-weight:700;letter-spacing:.16em}.mcard .cat i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px}
+.mcard h4{font-family:var(--serif);font-size:1.15rem;font-weight:900;margin:2px 0}.mcard .price{font-family:var(--it);font-size:1.7rem;line-height:1.2}.mcard .price small{font-family:var(--sans);font-size:.75rem;color:var(--mutd)}
+.mcard .desc{font-size:.8rem;color:var(--mutd);margin-top:4px}
+.night{background:#0d0a0f;color:var(--cream)}
+.night .lede{color:#cfc5b8}
+.sim{display:grid;grid-template-columns:1.1fr 1fr;gap:56px}@media(max-width:820px){.sim{grid-template-columns:1fr}}
+.sim label{font-size:.78rem;letter-spacing:.14em;color:var(--mutd)}.sim .val{font-family:var(--serif);font-weight:600;font-size:clamp(2.6rem,5vw,4rem);line-height:1.1;letter-spacing:-.04em}
+input[type=range]{width:100%;accent-color:var(--ox);margin:14px 0 6px}.ticks{display:flex;justify-content:space-between;font-size:.7rem;color:var(--mutd)}
+.out{display:grid;grid-template-columns:1fr 1fr;gap:20px 30px;margin-top:34px}.out b{display:block;font-family:var(--serif);font-weight:600;font-size:2rem}.out span{font-size:.76rem;color:var(--mutd)}
+.pos{color:#2f6b3f}.neg{color:var(--ox)}
+.waterfall div{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--lined);font-size:.88rem}.waterfall div.t{border-top:1px solid var(--ink);border-bottom:none;font-weight:700}
+.obj{border-top:1px solid var(--line)}.obj summary{list-style:none;cursor:pointer;padding:24px 0;display:flex;justify-content:space-between;gap:20px}
+.obj summary::-webkit-details-marker{display:none}.obj summary h3{font-size:clamp(1.2rem,2.2vw,1.6rem);margin:0;font-weight:600}.obj summary i{font-style:normal;font-size:.72rem;letter-spacing:.2em;color:var(--amber)}
+.obj p{margin:0 0 26px;max-width:44em;color:#cfc5b8}
+.dec{display:grid;grid-template-columns:repeat(3,1fr)}@media(max-width:820px){.dec{grid-template-columns:1fr}}
+.dec>div{border-left:1px solid var(--line);padding:0 24px 30px}.dec .tag{font-family:var(--it);font-style:italic;font-size:1.6rem;color:var(--amber)}.dec h3{font-size:1.5rem;margin:8px 0 12px}.dec p{font-size:.9rem;color:#bdb2a5}
+.close{font-family:var(--serif);font-weight:900;font-size:clamp(2rem,5vw,4rem);letter-spacing:-.045em;line-height:1.15;margin-top:80px}.close em{font-family:var(--it);font-weight:400;color:var(--amber)}
+footer{padding:60px 8vw 80px;background:#0b0908;font-size:.8rem;color:var(--mut)}code{background:#221c18;padding:1px 6px}
+
+.short{position:relative;width:min(100%,380px);aspect-ratio:9/16;margin:14px auto 0;background:#0a0807;overflow:hidden;border-radius:18px;cursor:pointer;box-shadow:0 30px 80px rgba(0,0,0,.6);font-family:var(--serif)}
+.segs{position:absolute;top:10px;left:10px;right:10px;display:flex;gap:3px;z-index:5}.segs i{flex:1;height:3px;background:rgba(255,255,255,.2);border-radius:2px;overflow:hidden}.segs i b{display:block;height:100%;width:0;background:#fff}
+.sh{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;opacity:0;text-align:center;padding:30px;transition:background 1s 1.2s}
+.sh.on{opacity:1}.sh.night2.on{background:#2a0f1c}
+.short .big{font-weight:900;font-size:5.6rem;line-height:1;letter-spacing:-.05em;color:#fff}.short .big small{font-size:.4em;color:var(--amber)}
+.short .cap{font-family:var(--sans);font-weight:800;font-size:1.25rem;color:#f2ebe0;letter-spacing:-.02em}.short .cap b{color:var(--amber)}
+.sh.on .flick{animation:flick .25s steps(2) 6}@keyframes flick{50%{opacity:.2;transform:scale(1.06)}}
+.sh.on .slam{animation:slam .5s cubic-bezier(.2,1.6,.4,1) both}@keyframes slam{from{transform:scale(2.4);opacity:0}}
+.sh.on .zoom{animation:zoom 2.4s ease-out both}@keyframes zoom{from{transform:scale(.6);letter-spacing:.1em;opacity:0}to{transform:scale(1.1)}}
+.sh.on .pop{animation:slam .5s .9s cubic-bezier(.2,1.6,.4,1) both;font-family:var(--serif);font-size:2.6rem;font-weight:900}
+.dots{display:grid;grid-template-columns:repeat(12,1fr);gap:7px;width:80%}.dots i{aspect-ratio:1;border-radius:50%;background:#5a4f47}
+.sh.on .dots i.win{animation:win .6s .6s both}@keyframes win{to{background:#d9a066;transform:scale(2.4);box-shadow:0 0 18px #d9a066}}
+.sh.on .dots i:not(.win){animation:fade .6s .6s both}@keyframes fade{to{opacity:.25}}
+.gbars{display:flex;align-items:flex-end;gap:16px;height:46%;width:70%}.gbars i{flex:1;background:#4a423b;border-radius:6px 6px 0 0;height:0;position:relative}.gbars i.hl{background:#d9a066}
+.sh.on .gbars i{animation:grow .7s cubic-bezier(.2,1.3,.4,1) both}.sh.on .gbars i:nth-child(2){animation-delay:.25s}.sh.on .gbars i:nth-child(3){animation-delay:.5s}@keyframes grow{to{height:var(--h)}}
+.gbars em{position:absolute;top:-28px;left:0;right:0;font-style:normal;font-family:var(--sans);font-weight:800;color:#fff}
+.tag{font-family:var(--sans);font-weight:900;font-size:1.6rem;background:#d9a066;color:#100d0b;padding:6px 16px;border-radius:8px;opacity:0}.sh.on .tag{animation:slam .5s 1.1s cubic-bezier(.2,1.6,.4,1) both;opacity:1}
+.vs{display:flex;gap:26px;width:84%;height:50%}.vs>div{flex:1;display:flex;align-items:flex-end;gap:6px;position:relative;padding-bottom:0;border-bottom:2px solid #444}
+.vs i{flex:1;height:0;border-radius:4px 4px 0 0}.vs .bad i{background:#5a4f47}.vs .good i{background:#d9a066}
+.sh.on .vs i{animation:grow .6s cubic-bezier(.2,1.3,.4,1) both}.sh.on .vs i:nth-child(2){animation-delay:.15s}.sh.on .vs i:nth-child(3){animation-delay:.3s}
+.vs span{position:absolute;bottom:-30px;left:0;right:0;font-family:var(--sans);font-size:.85rem;font-weight:700;color:#bdb2a5}
+.vs s{position:absolute;top:-14%;left:0;right:0;text-decoration:none;font-family:var(--sans);font-size:3.4rem;font-weight:900;opacity:0}.vs .bad s{color:#e2553f}.vs .good s{color:#7fd18b}
+.sh.on .vs s{animation:slam .45s 1.1s cubic-bezier(.2,1.6,.4,1) both}.sh.on .vs .good s{animation-delay:1.5s}
+.clock{width:120px;height:120px;border:4px solid #fff;border-radius:50%;position:relative}.clock i{position:absolute;left:50%;bottom:50%;width:4px;background:#fff;transform-origin:bottom;border-radius:2px;margin-left:-2px}.clock .hh{height:34px}.clock .mm{height:48px;background:#d9a066}
+.sh.on .clock .mm{animation:spin 1s cubic-bezier(.2,.8,.2,1) both}@keyframes spin{from{transform:rotate(-720deg)}}
+.room{position:relative;width:86%;height:55%;background:linear-gradient(#efe7da 0 62%,#d9cdbb 62%);border-radius:10px;overflow:hidden}
+.room .lights{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-around}.room .lights i{width:2px;height:40px;background:#222;position:relative}.room .lights i::after{content:"";position:absolute;bottom:-22px;left:-14px;width:30px;height:30px;border-radius:50%;background:#fff3dc;box-shadow:0 0 30px 10px rgba(255,200,130,.7);opacity:0}
+.sh.on .room .lights i::after{animation:on .4s both}.sh.on .room .lights i:nth-child(2)::after{animation-delay:.3s}.sh.on .room .lights i:nth-child(3)::after{animation-delay:.6s}@keyframes on{to{opacity:1}}
+.room .blocks{position:absolute;left:8%;bottom:38%;width:28%;height:38%;background:repeating-linear-gradient(90deg,rgba(255,255,255,.9) 0 2px,transparent 2px 18px),repeating-linear-gradient(0deg,rgba(255,255,255,.9) 0 2px,transparent 2px 18px),linear-gradient(135deg,#cfe3df,#9fbdb7);transform:translateY(160%)}
+.sh.on .room .blocks{animation:up .6s .8s cubic-bezier(.2,1.3,.4,1) both}@keyframes up{to{transform:none}}
+.room .counter{position:absolute;right:6%;bottom:14%;width:54%;height:30%;border-radius:999px 999px 10px 10px;background:linear-gradient(90deg,#9ea3a8,#eef0f2 40%,#a9aeb3);border-top:8px solid #5b3a24;transform:translateX(130%)}
+.sh.on .room .counter{animation:inx .6s 1.2s cubic-bezier(.2,1.3,.4,1) both}@keyframes inx{to{transform:none}}
+.morph{position:relative;width:160px;height:160px;font-size:7rem;line-height:160px}.morph div{position:absolute;inset:0}
+.sh.on .cupx{animation:out 1.2s .6s both}.glassx{opacity:0}.sh.on .glassx{animation:inn .6s 1.4s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes out{to{transform:rotate(-30deg) scale(.3);opacity:0}}@keyframes inn{from{transform:scale(.3) rotate(30deg);opacity:0}to{opacity:1}}
+.logo2{font-family:var(--it);font-size:4.6rem;color:transparent;-webkit-text-stroke:1.5px #d9a066;background:radial-gradient(circle,#d9a066 1.6px,transparent 2px) 0 0/8px 8px;-webkit-background-clip:text;background-clip:text}
+.sh.on .logo2{animation:zoom 3s ease-out both}
+.short.paused::after{content:"❚❚";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.4rem;color:#fff;background:rgba(0,0,0,.35);z-index:6}
+.short.paused *{animation-play-state:paused!important}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head><body>
+<div id="bar"></div>
+<nav class="ch" id="chnav"><a href="#q"><span>질문</span><i></i></a><a href="#answer"><span>결론</span><i></i></a><a href="#frame"><span>프레임워크</span><i></i></a><a href="#why"><span>근거</span><i></i></a><a href="#who"><span>고객</span><i></i></a><a href="#space"><span>공간</span><i></i></a><a href="#menu"><span>메뉴</span><i></i></a><a href="#night"><span>바 메뉴</span><i></i></a><a href="#pl"><span>손익</span><i></i></a><a href="#obj"><span>반론</span><i></i></a><a href="#sowhat"><span>실행</span><i></i></a></nav>
+
+<header class="hero" id="q">
+ <div class="top"><b>Halftone</b><span>신규 출점 전략 · 커피 브랜드 · 2026.11</span></div>
+ <div class="kick rv">A question worth 1.2억</div>
+ <h1 class="rv d1">3년 뒤, 서울<br>어디에서 커피를<br>팔아야 <em>할까?</em></h1>
+ <p class="rv d2">서울 1,650개 상권의 카드 매출, 점포, 유동인구, 임대료를 같은 기준으로 비교해 하나를 골랐습니다.</p>
+ <div class="cue">SCROLL ↓</div>
+</header>
+
+<section class="sec answer" id="answer"><div class="inner">
+ <h2 class="rv"><span>The answer is</span>을지로3가역.</h2>
+ <div class="brand rv d1"><div class="logo">Halftone</div><p><b>하프톤 HALFTONE</b> — 을지로 인쇄골목의 망점(halftone)에서 따온 이름. 낮에는 커피, 저녁에는 커피 칵테일. 반은 커피, 반은 바(bar)라는 뜻도 담았습니다.</p></div>
+ <p class="lede rv d2">평일 점심의 20~40대 도심 고객을 잡는 세련된 레트로 커피 바. 커피 매출이 3년 연속 늘었고(분기 48억 → 54억 → 66억) 폐업률은 0%입니다. 2호점은 영등포역입니다.</p>
+ <div class="stats num rv">
+  <div><b data-count="11.3" data-fmt="+%.1%">+11.3%</b><span>커피 매출 3년 연평균 성장</span></div>
+  <div><b data-count="2405" data-fmt="%,만">2,405만</b><span>카페당 월 추정매출(원)</span></div>
+  <div><b>0.0%</b><span>분기 폐업률</span></div>
+  <div><b data-count="27" data-fmt="%개월">27개월</b><span>투자 회수 · 기본 시나리오</span></div>
+ </div>
+ <div class="flabel rv" style="text-align:center">30초 쇼츠 · 클릭하면 일시정지</div>
+ <div class="short rv" id="short" title="클릭하면 일시정지">
+ <div class="segs" id="segs"></div>
+ <div class="sh" data-d="2300"><div class="big flick">1,650</div><div class="cap">서울 상권. 어디서 팔까?</div></div>
+ <div class="sh" data-d="2600"><div class="dots" id="dots"></div><div class="cap pop">을지로3가<b>.</b></div></div>
+ <div class="sh" data-d="3000"><div class="gbars"><i style="--h:62%"><em>48억</em></i><i style="--h:72%"><em>54억</em></i><i class="hl" style="--h:92%"><em>66억</em></i></div><div class="tag">3년 연속 ↑</div></div>
+ <div class="sh" data-d="2600"><div class="vs"><div class="bad"><i style="--h:30%"></i><i style="--h:30%"></i><i style="--h:60%"></i><span>1위 · 한 방</span><s>✕</s></div><div class="good"><i style="--h:58%"></i><i style="--h:70%"></i><i style="--h:90%"></i><span>을지로 · 꾸준</span><s>✓</s></div></div></div>
+ <div class="sh" data-d="2500"><div class="clock"><i class="hh"></i><i class="mm"></i></div><div class="big slam">42<small>%</small></div><div class="cap">점심 12시에 몰린다</div></div>
+ <div class="sh" data-d="2400"><div class="big zoom">20–40</div><div class="cap">매출의 56%</div></div>
+ <div class="sh" data-d="3200"><div class="room"><div class="lights"><i></i><i></i><i></i></div><div class="blocks"></div><div class="counter"></div></div><div class="cap">요즘의 레트로</div></div>
+ <div class="sh night2" data-d="3000"><div class="morph"><div class="cupx">☕</div><div class="glassx">🍸</div></div><div class="cap">17:00 이후엔 <b>바</b></div></div>
+ <div class="sh" data-d="2800"><div class="big money">0</div><div class="cap">월 매출(만원) → 이익률 <b>10%</b></div></div>
+ <div class="sh" data-d="2400"><div class="big slam">27<small>개월</small></div><div class="cap">투자 1.2억 회수</div></div>
+ <div class="sh" data-d="3200"><div class="logo2">Halftone</div><div class="cap">을지로3가 · 낮엔 커피, 밤엔 바</div></div>
+</div>
+
+</div></section>
+
+<section class="sec" id="frame"><div class="chno">01<b>STRUCTURE</b></div><div class="inner">
+ <p class="q rv">"성장할 상권"은 어떻게 고를까?</p>
+ <h2 class="rv d1">네 가지 질문을<br>모두 통과해야 합니다.</h2>
+ <div class="funnel num rv d2">
+  <div><b data-count="1650" data-fmt="%,">1,650</b><span>서울 전체 상권</span></div>
+  <div><b data-count="440" data-fmt="%,">440</b><span>카페 10곳 이상 · 3년 데이터</span></div>
+  <div><b data-count="61" data-fmt="%,">61</b><span>임대료 공표 상권</span></div>
+  <div><b>1</b><span>을지로3가역</span></div>
+ </div>
+ <div class="axes">
+  <div class="axis rv"><span class="w">30%</span><div class="L">A</div><h3>시장이 커지는가</h3><p>수요 성장 — 커피 매출 3년 연평균 성장률, 전년 대비 증가율</p></div>
+  <div class="axis rv d1"><span class="w">20%</span><div class="L">B</div><h3>사람이 오는가</h3><p>고객 기반 — 유동인구 3년 변화율, 20~30대 비중</p></div>
+  <div class="axis rv d2"><span class="w">25%</span><div class="L">C</div><h3>몫이 남는가</h3><p>경쟁 강도 — 카페당 매출, 매출 증가와 점포 증가의 차이, 폐업률</p></div>
+  <div class="axis rv d3"><span class="w">25%</span><div class="L">D</div><h3>남는 장사인가</h3><p>비용 효율 — 카페당 월매출 ÷ 66㎡ 월 임대료</p></div>
+ </div>
+</div></section>
+
+<section class="sec" id="why"><div class="chno">02<b>ANALYSIS</b></div><div class="inner">
+ <p class="q rv">점수 1위는 서울시청입니다. 그런데 왜 을지로일까?</p>
+ <h2 class="rv d1">한 번 튄 숫자보다,<br>3년 내내 오른 숫자.</h2>
+ <div class="multi num">
+  <div class="panel rv"><h4>서울시청</h4><div class="sub">종합 81점 · 1위 · 카페 34곳</div><div class="bars"><div data-h="17.2"><em>17.2</em></div><div data-h="17.2"><em>17.2</em></div><div data-h="28.9"><em>28.9</em></div></div><div class="xl"><span>2023</span><span>2025</span><span>2026</span></div><p class="verdict">2년 정체 후 <b>1년 만에 +69%</b>.</p></div>
+  <div class="panel rv d1"><h4>상봉역</h4><div class="sub">종합 76점 · 2위 · 카페 36곳</div><div class="bars"><div data-h="8.8"><em>8.8</em></div><div data-h="8.6"><em>8.6</em></div><div data-h="16.5"><em>16.5</em></div></div><div class="xl"><span>2023</span><span>2025</span><span>2026</span></div><p class="verdict">같은 패턴. <b>1년 만에 +92%</b>.</p></div>
+  <div class="panel pick rv d2"><h4>을지로3가역</h4><div class="sub">종합 75점 · 3위 · 카페 92곳</div><div class="bars"><div data-h="48.2"><em>48.2</em></div><div data-h="54.1"><em>54.1</em></div><div data-h="66.4"><em>66.4</em></div></div><div class="xl"><span>2023</span><span>2025</span><span>2026</span></div><p class="verdict"><b>3년 연속 증가</b>, 규모는 2~4배.</p></div>
+ </div>
+ <p class="small rv">커피 매출(분기, 억원), 매년 2분기. 각 패널은 자기 최댓값 기준이라 추세의 모양을 비교해 주세요.</p>
+ <div class="c3">
+  <div class="rv"><div class="n">+38% vs +11%</div><h3>수요가 공급보다 빠르다</h3><p class="small">3년간 매출 +38%, 카페 수 +11%.</p></div>
+  <div class="rv d1"><div class="n">0.0%</div><h3>문 닫는 곳이 없다</h3><p class="small">카페 92곳 규모에서 폐업률 0%.</p></div>
+  <div class="rv d2"><div class="n">≈ 서울시청</div><h3>같은 도심 수요</h3><p class="small">같은 업무지구라 서울시청 수요도 함께 받습니다.</p></div>
+ </div>
+ <details class="more rv"><summary>전체 순위 상위 10개 보기</summary>
+ <table>
+  <tr><th>#</th><th>상권</th><th>종합</th><th>수요</th><th>고객</th><th>경쟁</th><th>비용</th><th>3년 CAGR</th><th>카페</th><th>월 임대료</th></tr>
+  <tr><td>1</td><td>서울시청 · 중구</td><td>81</td><td>98</td><td>34</td><td>91</td><td>87</td><td>+18.8%</td><td>34</td><td>444만</td></tr>
+  <tr><td>2</td><td>상봉역 · 중랑구</td><td>76</td><td>100</td><td>52</td><td>63</td><td>79</td><td>+23.4%</td><td>36</td><td>260만</td></tr>
+  <tr class="sel"><td>3</td><td>을지로3가역 · 중구</td><td>75</td><td>89</td><td>44</td><td>83</td><td>74</td><td>+11.3%</td><td>92</td><td>430만</td></tr>
+  <tr><td>4</td><td>영등포역 · 영등포구</td><td>74</td><td>79</td><td>71</td><td>59</td><td>85</td><td>+13.6%</td><td>79</td><td>288만</td></tr>
+  <tr><td>5</td><td>성신여대 · 성북구</td><td>72</td><td>63</td><td>67</td><td>67</td><td>92</td><td>−1.3%</td><td>105</td><td>350만</td></tr>
+  <tr><td>6</td><td>동대문역사문화공원역 · 중구</td><td>71</td><td>82</td><td>61</td><td>73</td><td>66</td><td>+11.3%</td><td>58</td><td>327만</td></tr>
+  <tr><td>7</td><td>남부터미널역 · 서초구</td><td>69</td><td>81</td><td>56</td><td>46</td><td>89</td><td>+8.0%</td><td>55</td><td>248만</td></tr>
+  <tr><td>8</td><td>천호역 · 강동구</td><td>69</td><td>84</td><td>69</td><td>69</td><td>51</td><td>+19.3%</td><td>52</td><td>312만</td></tr>
+  <tr><td>9</td><td>독산동 · 금천구</td><td>69</td><td>76</td><td>75</td><td>46</td><td>77</td><td>+17.0%</td><td>32</td><td>199만</td></tr>
+  <tr><td>10</td><td>교대역 · 서초구</td><td>68</td><td>82</td><td>26</td><td>55</td><td>97</td><td>+11.7%</td><td>108</td><td>234만</td></tr>
+ </table>
+ <p class="small" style="margin-top:14px">가중치 민감도: 기본·성장 중시에서는 3위, 균등·비용 중시에서는 3위 밖. 임대료가 약점이라 출점 조건에 임대료 상한을 두었습니다.</p></details>
+</div></section>
+
+<section class="sec" id="who"><div class="chno">03<b>TARGET</b></div><div class="inner">
+ <p class="q rv">그럼 누가 커피를 살까?</p>
+ <h2 class="rv d1">평일 점심에 움직이는<br>20~40대.</h2>
+ <div class="tgrid num">
+  <div class="rv"><b>85%</b><div class="lb">평일 매출 비중</div><div class="vs">서울 평균 74%</div></div>
+  <div class="rv d1"><b>42%</b><div class="lb">점심(11~14시) 비중</div><div class="vs">서울 평균 36%</div></div>
+  <div class="rv d2"><b>56%</b><div class="lb">20~40대 매출 비중</div><div class="vs">연령 확인 매출의 73%</div></div>
+  <div class="rv d3"><b>9,394</b><div class="lb">건당 결제액(원)</div><div class="vs">서울 평균 7,902원</div></div>
+ </div>
+ <div class="persona">
+  <div class="rv"><div class="quote">"점심 먹고 <em>10분</em>.<br>줄 서지 않고 들고 나갈 수 있는<br>괜찮은 커피 한 잔."</div>
+   <p class="small" style="margin-top:22px"><b style="color:var(--amber)">숨은 기회 — 20대.</b> 20대 매출 비중은 3년 새 17.6%에서 13.8%로 줄었습니다(서울 평균 17.4%). 요즘 감도의 공간과 저녁 바 메뉴로 20대를 다시 데려오는 것이 성장 여지입니다.</p></div>
+  <div class="rv d1"><h3>시간대별 커피 매출 비중</h3>
+   <div class="timeline num">
+    <div style="height:0%"><em>0</em><span>00–06</span></div><div style="height:43%"><em>18</em><span>06–11</span></div><div class="pk" style="height:100%"><em>42</em><span>11–14</span></div><div class="op" style="height:43%"><em>18</em><span>14–17</span></div><div class="op" style="height:43%"><em>18</em><span>17–21</span></div><div style="height:10%"><em>4</em><span>21–24</span></div>
+   </div>
+   <p class="small" style="margin-top:36px">유동인구는 06~21시 시간대마다 21%씩 고르게 퍼져 있는데, 커피 결제는 점심에 몰립니다. 분홍색 오후·저녁 구간은 <b>사람은 있는데 매출이 적은 시간</b>입니다. 바 메뉴가 노리는 곳입니다.</p></div>
+ </div>
+</div></section>
+
+<section class="sec" id="space"><div class="chno">04<b>SPACE</b></div><div class="inner">
+ <p class="q rv">어떤 공간이어야 20대도, 40대도 들어올까?</p>
+ <h2 class="rv d1">요즘의 레트로.<br>그리고 10분 픽업.</h2>
+ <p class="lede rv d2">옛날 다방의 재현이 아니라, 70년대 모던의 재료를 지금 감도로 다시 쓴 공간. 스테인리스 곡선 바, 테라초 바닥, 글라스 블록, 크롬 튜브 의자, 오팔 글로브 조명. 직접 돌려 보세요.</p>
+ <div class="store3d rv" id="store3d">
+  <div class="ctl3d"><button data-view="overview" class="on">전경</button><button data-view="entrance">입구에서</button><button data-view="bar">바 · 픽업</button><button data-view="seats">좌석</button><button data-view="lounge">라운지</button><button id="rot3d">자동 회전</button></div>
+  <div class="hint3d">드래그 회전 · 스크롤 확대 · 우클릭 이동</div>
+ </div>
+ <div class="mood rv">
+  <div style="background:#efe7da;color:#16120f">LIMEWASH<br>CREAM</div><div style="background:linear-gradient(135deg,#d8d4cf,#b5b9bd 55%,#e9e7e3);color:#16120f">BRUSHED<br>STEEL</div><div style="background:#5b3a24;color:#f2ebe0">WALNUT</div><div style="background:#6e2a22;color:#f2ebe0">OXBLOOD<br>LEATHER</div><div style="background:#59613a;color:#f2ebe0">OLIVE<br>VELVET</div><div style="background:radial-gradient(circle at 20% 30%,#9a8f7f 2px,transparent 3px) 0 0/14px 14px,radial-gradient(circle at 70% 60%,#6e2a22 2px,transparent 3px) 0 0/19px 19px,#e6ddcf;color:#16120f">TERRAZZO</div>
+ </div>
+ <div class="c3">
+  <div class="rv"><div class="n">40%</div><h3>입구 픽업 존</h3><p class="small">곡선 스테인리스 바를 입구 쪽에. 키오스크 → 바 → 픽업 선반 한 방향 동선. 저녁에는 같은 바가 칵테일 바가 됩니다.</p></div>
+  <div class="rv d1"><div class="n">22석</div><h3>라운지 + 창가 바</h3><p class="small">올리브 벨벳 곡선 소파, 트래버틴 원형 테이블, 크롬 의자. 오팔 조명을 낮추면 저녁 바 분위기로 바뀝니다.</p></div>
+  <div class="rv d2"><div class="n">1 scene</div><h3>사진이 되는 한 장면</h3><p class="small">빛이 비치는 글라스 블록 벽과 아치 거울. 간판 대신 작은 황동 Halftone 로고 하나.</p></div>
+ </div>
+</div></section>
+
+<section class="sec cream" id="menu"><div class="chno">05<b>MENU</b></div><div class="inner">
+ <p class="q rv">무엇을 팔아야 할까?</p>
+ <h2 class="rv d1">빨리 나가는 기본,<br>찍고 싶은 시그니처.</h2>
+ <h3 class="rv">목표 매출 구성 (바 메뉴 포함)</h3>
+ <div class="legend" id="mixLegend"></div>
+ <div class="mix" id="mix" role="img" aria-label="목표 매출 구성: 코어 50%, 시그니처 22%, 오후 10%, B2B 6%, 바 12%"></div>
+ <div class="tip" id="mixTip"></div>
+ <div class="menuGrid" id="menuGrid"></div>
+</div></section>
+
+<section class="sec night" id="night"><div class="chno">05+<b>AFTER FIVE</b></div><div class="inner">
+ <p class="q rv">평일 저녁과 주말, 비어 있는 시간은?</p>
+ <h2 class="rv d1">17시부터는<br>커피 칵테일 바.</h2>
+ <p class="lede rv d2">같은 바, 같은 원두로 저녁에는 커피 칵테일을 냅니다. 유동인구는 17~21시에도 낮과 같은 21%인데 커피 매출은 18%에 그치고, 주말 유동인구 18% 대비 주말 매출은 15%입니다. 이 빈 시간을 채우는 메뉴입니다.</p>
+ <div class="menuGrid" id="barGrid" style="--ink:#f2ebe0;--mutd:#a89d90"></div>
+ <div class="c3">
+  <div class="rv"><div class="n">17–23시</div><h3>운영 시간</h3><p class="small">평일 17시부터, 주말은 오후부터 바 메뉴. 조명을 낮추고 음악을 바꿔 공간을 전환합니다.</p></div>
+  <div class="rv d1"><div class="n">목표 12%</div><h3>매출 비중</h3><p class="small">월 2,400만원 기준 약 290만원. 커피 칵테일은 객단가 1~1.4만원이라 적은 잔으로도 매출이 납니다.</p></div>
+  <div class="rv d2"><div class="n">필수 확인</div><h3>영업신고 변경</h3><p class="small">카페의 일반적인 휴게음식점 신고로는 주류를 팔 수 없어 일반음식점 신고가 필요합니다. 저녁 인력 1명 추가도 손익에 반영해야 합니다.</p></div>
+ </div>
+</div></section>
+
+<section class="sec cream" id="pl" style="background:var(--cream2)"><div class="chno">06<b>P&amp;L</b></div><div class="inner">
+ <p class="q rv">그래서, 얼마나 남을까?</p>
+ <h2 class="rv d1">월 2,015만원을 넘는 순간<br>이익이 납니다.</h2>
+ <div class="sim">
+  <div class="rv d2"><label>월 매출을 움직여 보세요</label><div class="val num" id="sVal">2,400만원</div>
+   <input type="range" id="sRange" min="1500" max="3200" step="50" value="2400" aria-label="월 매출(만원)">
+   <div class="ticks num"><span>1,500</span><span>보수 1,700</span><span>기본 2,400</span><span>낙관 3,000</span><span>3,200</span></div>
+   <div class="out num"><div><b id="oOp">250만</b><span>월 영업이익</span></div><div><b id="oMg">10.4%</b><span>영업이익률</span></div><div><b id="oPb">27개월</b><span>투자 회수(1.2억)</span></div><div><b id="oVs">100%</b><span>상권 카페당 평균 대비</span></div></div></div>
+  <div class="rv d3"><div class="waterfall num" id="wf"></div>
+   <p class="small" style="margin-top:14px">손익분기 = 고정비 1,310만 ÷ (1 − 변동비율 35%) ≈ 월 2,015만원. 바 메뉴는 기본 시나리오 2,400만원 안에 포함된 목표치이며, 저녁 인력 추가 비용은 아직 반영하지 않았습니다. 원가율·인건비·투자비는 업계 통상 수준 가정입니다.</p></div>
+ </div>
+</div></section>
+
+<section class="sec" id="obj"><div class="chno">07<b>ARGUMENT</b></div><div class="inner">
+ <p class="q rv">이런 질문이 나올 겁니다.</p>
+ <h2 class="rv d1">예상 반론, 미리 답합니다.</h2>
+ <div class="rv d2">
+ <details class="obj"><summary><h3>“점수 1위는 서울시청인데요?”</h3><i>ANSWER</i></summary><p>서울시청은 2년 정체 뒤 1년 만에 +69%가 오른 한 번의 급증이고, 카페 34곳의 소표본에 유동인구도 9% 줄었습니다. 을지로3가역은 3년 연속 성장했고 같은 업무지구라 그 수요도 받습니다.</p></details>
+ <details class="obj"><summary><h3>“주말 매출이 15%뿐인데요?”</h3><i>ANSWER</i></summary><p>그래서 바 메뉴를 넣었습니다. 평일 저녁과 주말 오후를 커피 칵테일로 채우고, 브랜드 차원에서는 주말 비중 39%인 영등포역을 2호점으로 둡니다.</p></details>
+ <details class="obj"><summary><h3>“카페에서 칵테일이 팔릴까요?”</h3><i>ANSWER</i></summary><p>바 메뉴는 목표 매출의 12%로 작게 시작합니다. 개점 3개월 동안 17시 이후 매출을 추적해, 목표의 절반에 못 미치면 논알콜 메뉴만 남기고 저녁 인력을 줄입니다.</p></details>
+ <details class="obj"><summary><h3>“카페가 92곳이면 포화 아닌가요?”</h3><i>ANSWER</i></summary><p>3년간 카페 수 +11%, 매출 +38%로 수요가 더 빨리 늘었고 폐업률은 0%입니다.</p></details>
+ <details class="obj"><summary><h3>“데이터를 믿을 수 있나요?”</h3><i>ANSWER</i></summary><p>추정매출은 카드 결제 기반이라 상권 간 상대 비교에만 썼습니다. 임대료는 2025년 공표치라 시점 차이가 있어 비용 축 가중치를 25%로 제한하고, 출점 전 실제 매물 시세로 재검증합니다.</p></details>
+ </div>
+</div></section>
+
+<section class="sec" id="sowhat"><div class="chno">08<b>SO WHAT</b></div><div class="inner">
+ <p class="q rv">그래서 무엇을 결정하면 되나?</p>
+ <h2 class="rv d1">지금 결정할 세 가지.</h2>
+ <div class="dec">
+  <div class="rv"><div class="tag">Open</div><h3>출점</h3><p>을지로3가역 반경 300m, 1층 50~70㎡ 매물. 임대료 ㎡당 5만원 이하, 일반음식점 신고 가능한 건물일 때 진행.</p></div>
+  <div class="rv d1"><div class="tag">Invest</div><h3>투자</h3><p>1호점 1.2억, 27개월 회수 목표. 개점 6개월 뒤 월 매출 2,015만원을 넘으면 2호점(영등포역) 집행.</p></div>
+  <div class="rv d2"><div class="tag">Grow</div><h3>마케팅</h3><p>점심 앱 사전주문, 오피스 콜드브루 납품, 저녁 "After Five" 커피 칵테일로 20대 유입.</p></div>
+ </div>
+ <div class="close rv">을지로3가에서,<br><em>Halftone</em> — 낮엔 커피, 밤엔 바.</div>
+</div></section>
+
+<footer><div class="inner">
+ <p><b>출처</b> — 서울 열린데이터광장 상권분석서비스 OpenAPI(VwsmTrdarSelngQq, VwsmTrdarStorQq, VwsmTrdarFlpopQq, VwsmTrdarIxQq, TbgisTrdarRelm), 업종 "커피-음료". 임대료는 "서울시 매장용빌딩 임대료·공실률 및 수익률 통계"(원출처 한국부동산원, 2025년, 1층).</p>
+ <p><b>기간·단위</b> — 2026년 2분기를 2025·2023년 2분기와 비교. 카페 수는 프랜차이즈 포함(SIMILR_INDUTY_STOR_CO). 연령 비중은 전체 매출 대비(연령 미상 약 23%).</p>
+ <p><b>재현</b> — <code>python scripts/01_fetch.py &lt;API키&gt;</code> → <code>python scripts/02_analyze.py</code>. 바 메뉴 가격·비중과 손익의 비용 항목은 가정치입니다.</p>
+</div></footer>
+
+<script>
+const bar=document.getElementById('bar'),links=[...document.querySelectorAll('#chnav a')],secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+addEventListener('scroll',()=>{const h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';let cur=0;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<innerHeight*.5)cur=i});links.forEach((a,i)=>a.classList.toggle('on',i===cur))},{passive:true});
+function fmt(v,f){if(f.includes('%,'))return f.replace('%,',Math.round(v).toLocaleString());if(f.includes('%.1'))return f.replace('%.1',v.toFixed(1));return f.replace('%',Math.round(v))}
+function countUp(el){const to=+el.dataset.count,f=el.dataset.fmt,t0=performance.now();(function st(t){const k=Math.min(1,(t-t0)/1400),e=1-Math.pow(1-k,3);el.textContent=fmt(to*e,f);if(k<1)requestAnimationFrame(st)})(t0)}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;el.classList.add('in');el.querySelectorAll('[data-count]').forEach(countUp);
+ el.querySelectorAll('.bars').forEach(b=>{const ds=[...b.children],mx=Math.max(...ds.map(d=>+d.dataset.h));ds.forEach(d=>d.style.height=(+d.dataset.h/mx*100)+'%')});
+ if(el.id==='mix')growMix();io.unobserve(el)}),{threshold:.15});
+// 카테고리 색 고정 순서 — dataviz validate_palette 통과(표면 #f2ebe0)
+const CAT=[{k:"코어",c:"#b23a1e",share:50,note:"점심 회전 메뉴"},{k:"시그니처",c:"#00896b",share:22,note:"객단가와 SNS 노출"},{k:"오후",c:"#a87a00",share:10,note:"14~17시 수요"},{k:"B2B",c:"#3b5bc0",share:6,note:"오피스 정기 납품"},{k:"바",c:"#c0407e",share:12,note:"평일 17시 이후 · 주말 커피 칵테일"}];
+const L={esp:"#3b2116",water:"#7a4b2e",milk:"#e9dcc6",foam:"#f6efe2",cream:"#f3e7cf",cold:"#2a170e",sesame:"#4a4540",decaf:"#a77b55",tea:"#b5651d",yuzu:"#f2c14e",soda:"#f7e7a6",ice:"rgba(255,255,255,.55)",tonic:"#e8eadf",camp:"#a3241c",whisky:"#b8742a"};
+const MENU=[
+ {cat:0,n:"아메리카노",p:4500,d:"원두 2종(고소 / 산미) 선택",lay:[["water",.75],["esp",.12]],hot:1},
+ {cat:0,n:"카페라떼",p:5500,d:"우유 비율을 높여 부드럽게",lay:[["esp",.18],["milk",.55],["foam",.14]],hot:1},
+ {cat:1,n:"하프톤 크림 콜드브루",p:6500,d:"콜드브루 + 솔티 바닐라 크림",lay:[["cold",.62],["cream",.2]],ice:1},
+ {cat:1,n:"흑임자 라떼",p:7000,d:"흑임자 페이스트 + 에스프레소",lay:[["sesame",.2],["milk",.42],["esp",.12],["foam",.1]],ice:1},
+ {cat:2,n:"디카페인 라떼",p:5500,d:"오후 미팅용 저카페인",lay:[["decaf",.2],["milk",.5],["foam",.14]],hot:1},
+ {cat:2,n:"유자 에이드",p:6500,d:"계절 과일 에이드",lay:[["yuzu",.25],["soda",.55]],ice:1},
+ {cat:3,n:"콜드브루 보틀 1L",p:18000,d:"사무실 정기 납품 · 단체 주문",lay:[["cold",.85]],bottle:1}];
+const BAR=[
+ {cat:4,n:"에스프레소 마티니",p:13000,d:"보드카 + 에스프레소 + 커피 리큐어",glass:"mart",col:"#2a170e",top:"#c9a27a"},
+ {cat:4,n:"콜드브루 네그로니",p:14000,d:"진 + 캄파리 + 콜드브루 인퓨전 베르무트",glass:"rock",col:"#7a1f18",top:null},
+ {cat:4,n:"커피 하이볼",p:11000,d:"위스키 + 콜드브루 + 탄산",glass:"high",col:"#8a5a2a",top:null},
+ {cat:4,n:"에스프레소 토닉 (논알콜)",p:7000,d:"토닉 위에 에스프레소를 띄운 층",glass:"high",col:"#e8eadf",top:"#3b2116"}];
+function cup(m,idx){
+ if(m.bottle)return `<svg viewBox="0 0 160 160"><rect x="62" y="6" width="36" height="12" rx="3" fill="#16120f"/><path d="M56 20h48v8c10 6 12 14 12 22v98a6 6 0 0 1-6 6H50a6 6 0 0 1-6-6V50c0-8 2-16 12-22z" fill="#f7f4ee" stroke="#16120f" stroke-width="1.6"/><path d="M46 62h68v86a5 5 0 0 1-5 5H51a5 5 0 0 1-5-5z" fill="${L.cold}"/><rect x="50" y="92" width="60" height="26" fill="#f2ebe0"/><text x="80" y="110" text-anchor="middle" font-size="14" font-family="Instrument Serif,serif" font-style="italic" fill="#16120f">Halftone</text></svg>`;
+ const top=14,bot=150,tw=104,bw=78;let s=`<svg viewBox="0 0 160 160"><defs><clipPath id="cup${idx}"><path d="M${80-tw/2} ${top}L${80+tw/2} ${top}L${80+bw/2} ${bot}L${80-bw/2} ${bot}Z"/></clipPath></defs><g clip-path="url(#cup${idx})">`;
+ let y=bot;m.lay.forEach(([k,f])=>{const hh=f*(bot-top);s+=`<rect x="0" y="${y-hh}" width="160" height="${hh+.5}" fill="${L[k]}"/>`;y-=hh});
+ if(m.ice)[[60,bot-50],[88,bot-70],[70,bot-95],[95,bot-38]].forEach(([ix,iy],i)=>{if(iy>y)s+=`<rect x="${ix}" y="${iy}" width="18" height="18" rx="3" fill="${L.ice}" transform="rotate(${i*17} ${ix+9} ${iy+9})"/>`});
+ s+=`</g><path d="M${80-tw/2} ${top}L${80+tw/2} ${top}L${80+bw/2} ${bot}L${80-bw/2} ${bot}Z" fill="none" stroke="#16120f" stroke-width="1.6"/>`;
+ if(m.hot){s+=`<path d="M${80+tw/2-5} ${top+28}c18 0 18 34 0 34" fill="none" stroke="#16120f" stroke-width="1.6"/>`}else s+=`<line x1="98" y1="${top-10}" x2="88" y2="${bot-30}" stroke="#16120f" stroke-width="4" stroke-linecap="round"/>`;
+ return s+`</svg>`}
+function glass(m){const st="#f2ebe0";
+ if(m.glass==="mart")return `<svg viewBox="0 0 160 160"><path d="M40 30h80L80 82z" fill="${m.col}"/><path d="M44 33h72l-3 5H47z" fill="${m.top}"/><circle cx="72" cy="36" r="3" fill="#3b2116"/><circle cx="82" cy="35" r="3" fill="#3b2116"/><circle cx="91" cy="37" r="3" fill="#3b2116"/><path d="M36 26h88L80 84z M80 84v54 M56 140h48" fill="none" stroke="${st}" stroke-width="1.6"/></svg>`;
+ if(m.glass==="rock")return `<svg viewBox="0 0 160 160"><rect x="44" y="76" width="72" height="64" fill="${m.col}"/><rect x="58" y="82" width="34" height="34" rx="4" fill="rgba(255,255,255,.35)" transform="rotate(8 75 99)"/><path d="M98 76c10-6 16 0 10 6" fill="none" stroke="#e08a2e" stroke-width="5" stroke-linecap="round"/><path d="M40 60h80v84H40z" fill="none" stroke="${st}" stroke-width="1.6"/><rect x="40" y="138" width="80" height="6" fill="${st}"/></svg>`;
+ return `<svg viewBox="0 0 160 160"><rect x="56" y="${m.top?44:40}" width="48" height="${m.top?96:100}" fill="${m.col}"/>${m.top?`<rect x="56" y="34" width="48" height="22" fill="${m.top}"/>`:''}${[0,1,2].map(i=>`<rect x="${64+i*10}" y="${70+i*22}" width="16" height="16" rx="3" fill="rgba(255,255,255,.35)"/>`).join('')}<path d="M54 24h52v118H54z" fill="none" stroke="${st}" stroke-width="1.6"/><line x1="92" y1="14" x2="84" y2="110" stroke="${st}" stroke-width="3"/></svg>`}
+function card(m,svg){const c=CAT[m.cat];return `<div class="mcard rv"><div class="cat"><i style="background:${c.c}"></i>${c.k}</div>${svg}<h4>${m.n}</h4><div class="price">${m.p.toLocaleString()}<small> 원</small></div><div class="desc">${m.d}</div></div>`}
+document.getElementById("menuGrid").innerHTML=MENU.map((m,i)=>card(m,cup(m,i))).join("")+card(BAR[0],glass(BAR[0]).replace(/#f2ebe0/g,"#16120f"));
+document.getElementById("barGrid").innerHTML=BAR.map(m=>card(m,glass(m))).join("");
+document.getElementById("mixLegend").innerHTML=CAT.map(c=>`<span><i style="background:${c.c}"></i>${c.k}</span>`).join("");
+const mix=document.getElementById("mix"),tip=document.getElementById("mixTip");
+mix.innerHTML=CAT.map((c,i)=>`<div data-i="${i}" style="background:${c.c};transition:width 1.2s cubic-bezier(.2,.7,.2,1) ${i*.12}s,opacity .15s">${c.share>=10?c.k+" "+c.share+"%":c.share+"%"}</div>`).join("");
+let grown=false;function growMix(){if(grown)return;grown=true;mix.querySelectorAll("div").forEach((d,i)=>d.style.width=`calc(${CAT[i].share}% - 2px)`)}
+mix.querySelectorAll("div").forEach(el=>{el.addEventListener("mousemove",e=>{const c=CAT[el.dataset.i];tip.innerHTML=`<b>${c.k} ${c.share}%</b><br>${c.note}<br>기본 시나리오 월 ${Math.round(2400*c.share/100).toLocaleString()}만원`;tip.style.left=e.clientX+14+"px";tip.style.top=e.clientY+14+"px";tip.style.opacity=1});el.addEventListener("mouseleave",()=>tip.style.opacity=0)});
+document.querySelectorAll('.rv,#mix').forEach(el=>io.observe(el));
+const R=document.getElementById('sRange'),fm=v=>Math.round(v).toLocaleString();
+function sim(){const S=+R.value,v=S*.35,op=S-v-1310,cash=op+200;document.getElementById('sVal').textContent=fm(S)+'만원';
+ const o=document.getElementById('oOp');o.textContent=(op<0?'−':'')+fm(Math.abs(op))+'만';o.className=op<0?'neg':'pos';
+ document.getElementById('oMg').textContent=(op/S*100).toFixed(1)+'%';document.getElementById('oPb').textContent=cash>0?Math.round(12000/cash)+'개월':'회수 불가';document.getElementById('oVs').textContent=Math.round(S/2405*100)+'%';
+ document.getElementById('wf').innerHTML=[["매출",S],["변동비 35% (원가 30 · 카드 2 · 마케팅 3)",-v],["임대료",-430],["인건비",-600],["관리비 · 공과금",-80],["감가상각 (1.2억 ÷ 5년)",-200]].map(([k,x])=>`<div><span>${k}</span><span>${x<0?'−':''}${fm(Math.abs(x))}</span></div>`).join('')+`<div class="t"><span>영업이익</span><span class="${op<0?'neg':'pos'}">${op<0?'−':''}${fm(Math.abs(op))}만</span></div>`}
+R.addEventListener('input',sim);sim();
+</script>
+
+
+<script>
+(()=>{const el=document.getElementById('short');if(!el)return;const sc=[...el.querySelectorAll('.sh')],segs=document.getElementById('segs');
+segs.innerHTML=sc.map(()=>'<i><b></b></i>').join('');const bars=[...segs.querySelectorAll('b')];
+document.getElementById('dots').innerHTML=Array.from({length:84},(_,i)=>`<i class="${i===41?'win':''}"></i>`).join('');
+let i=0,t0=0,el0=0,paused=false;
+function show(n){sc.forEach(s=>s.classList.remove('on'));void el.offsetWidth;sc[n].classList.add('on');bars.forEach((b,k)=>b.style.width=k<n?'100%':'0');
+ const m=sc[n].querySelector('.money');if(m){const s=performance.now();(function st(t){const k=Math.min(1,(t-s)/1300);m.textContent=Math.round(2400*(1-Math.pow(1-k,3))).toLocaleString();if(k<1)requestAnimationFrame(st)})(s)}}
+function tick(){const t=performance.now();if(!paused){const p=(t-t0)/+sc[i].dataset.d;bars[i].style.width=Math.min(100,p*100)+'%';if(p>=1){i=(i+1)%sc.length;t0=t;show(i)}}}
+el.addEventListener('click',()=>{paused=!paused;el.classList.toggle('paused',paused);if(paused)el0=performance.now()-t0;else t0=performance.now()-el0});
+show(0);t0=performance.now();setInterval(tick,40)})();
+</script>
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { CSS2DRenderer, CSS2DObject } from "three/addons/renderers/CSS2DRenderer.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+const host=document.getElementById("store3d");const W=11,D=6,H=3.3;
+const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.outputColorSpace=THREE.SRGBColorSpace;host.appendChild(renderer.domElement);
+const labelR=new CSS2DRenderer();labelR.domElement.className="labels3d";host.appendChild(labelR.domElement);
+const scene=new THREE.Scene();scene.background=new THREE.Color("#0b0908");
+const pmrem=new THREE.PMREMGenerator(renderer);scene.environment=pmrem.fromScene(new RoomEnvironment(),0.04).texture;scene.environmentIntensity=.35;
+const camera=new THREE.PerspectiveCamera(42,1,.1,100);const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.maxPolarAngle=Math.PI*.495;controls.minDistance=2.5;controls.maxDistance=22;
+function tex(w,h,draw,rep=[1,1]){const c=document.createElement("canvas");c.width=w;c.height=h;draw(c.getContext("2d"),w,h);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(...rep);t.anisotropy=8;return t}
+const rnd=(()=>{let s=7;return()=>(s=(s*16807)%2147483647)/2147483647})();
+const terrazzo=tex(512,512,(g,w,h)=>{g.fillStyle="#e6ddcf";g.fillRect(0,0,w,h);const cols=["#9a8f7f","#6e2a22","#c9b79c","#59613a","#3b3530","#b8935a"];for(let i=0;i<2600;i++){g.fillStyle=cols[(rnd()*cols.length)|0];g.globalAlpha=.55+rnd()*.45;const x=rnd()*w,y=rnd()*h,r=1+rnd()*3.5;g.beginPath();g.ellipse(x,y,r,r*(.6+rnd()*.6),rnd()*3,0,7);g.fill()}g.globalAlpha=1},[4,2.2]);
+const limewash=tex(512,512,(g,w,h)=>{g.fillStyle="#ece3d5";g.fillRect(0,0,w,h);for(let i=0;i<70;i++){const x=rnd()*w,y=rnd()*h,r=40+rnd()*120,gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,`rgba(${rnd()>.5?"205,190,170":"250,245,236"},.35)`);gr.addColorStop(1,"rgba(0,0,0,0)");g.fillStyle=gr;g.fillRect(0,0,w,h)}},[2,1]);
+const slat=tex(256,256,(g,w,h)=>{for(let x=0;x<w;x+=16){const v=rnd()*18;g.fillStyle=`rgb(${86+v},${55+v*.6},${34+v*.4})`;g.fillRect(x,0,13,h);g.fillStyle="#2b1c12";g.fillRect(x+13,0,3,h)}},[6,1]);
+const brushed=tex(256,64,(g,w,h)=>{g.fillStyle="#b9bdc2";g.fillRect(0,0,w,h);for(let i=0;i<400;i++){g.fillStyle=`rgba(${rnd()>.5?255:90},${rnd()>.5?255:90},${rnd()>.5?255:95},.06)`;g.fillRect(rnd()*w,0,1,h)}},[8,1]);
+const logoT=tex(512,256,(g,w,h)=>{g.fillStyle="#c9a46a";g.font="italic 120px 'Instrument Serif', serif";g.textAlign="center";g.textBaseline="middle";g.fillText("Halftone",w/2,h/2+6)});
+const M={floor:new THREE.MeshStandardMaterial({map:terrazzo,roughness:.32}),wall:new THREE.MeshStandardMaterial({map:limewash,roughness:.95}),ceil:new THREE.MeshStandardMaterial({color:"#efe8dc",roughness:1}),slat:new THREE.MeshStandardMaterial({map:slat,roughness:.6}),
+ steel:new THREE.MeshStandardMaterial({map:brushed,color:"#d4d7db",metalness:.9,roughness:.32}),chrome:new THREE.MeshStandardMaterial({color:"#e8eaec",metalness:1,roughness:.12}),walnut:new THREE.MeshStandardMaterial({color:"#5b3a24",roughness:.5}),
+ trav:new THREE.MeshStandardMaterial({color:"#d9cbb3",roughness:.55}),ox:new THREE.MeshStandardMaterial({color:"#6e2a22",roughness:.45}),olive:new THREE.MeshStandardMaterial({color:"#59613a",roughness:.9}),cream:new THREE.MeshStandardMaterial({color:"#efe7da",roughness:.4}),
+ black:new THREE.MeshStandardMaterial({color:"#151210",roughness:.5,metalness:.3}),glassBlock:new THREE.MeshPhysicalMaterial({color:"#e8f0ee",roughness:.18,transmission:.85,thickness:.15,ior:1.4,transparent:true,opacity:.9}),
+ window:new THREE.MeshPhysicalMaterial({color:"#c8d6d2",roughness:.05,transmission:.95,transparent:true,opacity:.18}),mirror:new THREE.MeshStandardMaterial({color:"#d8d2c8",metalness:1,roughness:.06}),
+ opal:new THREE.MeshStandardMaterial({color:"#fff6e6",emissive:"#ffd8a3",emissiveIntensity:1.6,roughness:.3}),cove:new THREE.MeshBasicMaterial({color:"#ffd9a8"}),leaf:new THREE.MeshStandardMaterial({color:"#4f5f37",roughness:.8,flatShading:true}),paper:new THREE.MeshStandardMaterial({color:"#f7f2ea",roughness:.9}),
+ bottle:new THREE.MeshPhysicalMaterial({color:"#7a4a1e",roughness:.1,transmission:.6,transparent:true,opacity:.85})};
+const add=(geo,m,x,y,z)=>{const o=new THREE.Mesh(geo,m);o.position.set(x,y,z);o.castShadow=o.receiveShadow=true;scene.add(o);return o};
+const box=(w,h,d,m,x,y,z)=>add(new THREE.BoxGeometry(w,h,d),m,x,y,z);
+const cyl=(rt,rb,h,m,x,y,z,seg=40)=>add(new THREE.CylinderGeometry(rt,rb,h,seg),m,x,y,z);
+const rbox=(w,h,d,r,m,x,y,z)=>{const s=new THREE.Shape(),a=w/2-r,b=d/2-r;s.moveTo(-a,-d/2);s.lineTo(a,-d/2);s.quadraticCurveTo(w/2,-d/2,w/2,-b);s.lineTo(w/2,b);s.quadraticCurveTo(w/2,d/2,a,d/2);s.lineTo(-a,d/2);s.quadraticCurveTo(-w/2,d/2,-w/2,b);s.lineTo(-w/2,-b);s.quadraticCurveTo(-w/2,-d/2,-a,-d/2);
+ const g=new THREE.ExtrudeGeometry(s,{depth:h,bevelEnabled:false,curveSegments:16});g.rotateX(-Math.PI/2);g.translate(0,-h/2,0);return add(g,m,x,y,z)};
+const fl=new THREE.Mesh(new THREE.PlaneGeometry(W,D),M.floor);fl.rotation.x=-Math.PI/2;fl.receiveShadow=true;scene.add(fl);
+const ce=new THREE.Mesh(new THREE.PlaneGeometry(W,D),M.ceil);ce.rotation.x=Math.PI/2;ce.position.y=H;scene.add(ce);
+box(W,H,.12,M.wall,0,H/2,-D/2);box(.12,H,D,M.wall,-W/2,H/2,0);box(.12,H,D,M.wall,W/2,H/2,0);
+box(W-.2,.9,.03,M.slat,0,.45,-D/2+.08);box(.03,.9,D-.2,M.slat,-W/2+.08,.45,0);
+for(const [w,d,x,z] of [[W-.4,.05,0,-D/2+.25],[.05,D-.4,-W/2+.25,0],[.05,D-.4,W/2-.25,0]])box(w,.02,d,M.cove,x,H-.12,z).castShadow=false;
+const fz=D/2;const win=new THREE.Mesh(new THREE.PlaneGeometry(W,H),M.window);win.position.set(0,H/2,fz);scene.add(win);
+box(W,.05,.06,M.black,0,.02,fz);box(W,.05,.06,M.black,0,H-.02,fz);box(W,.04,.06,M.black,0,2.45,fz);for(const x of [-W/2,-2.75,0,2.6,3.9,W/2])box(.05,H,.06,M.black,x,H/2,fz);
+const aw=box(W*.62,.04,.9,M.ox,-1.7,2.75,fz+.45);aw.rotation.x=.25;
+const bx=2.4,bz=-.2;rbox(4.6,1.02,.78,.38,M.steel,bx,.51,bz);rbox(4.75,.05,.92,.44,M.walnut,bx,1.045,bz);box(4.2,.02,.02,M.cove,bx,.06,bz+.42).castShadow=false;
+rbox(1,.42,.55,.12,M.cream,1.5,1.28,bz-.05);box(1.02,.05,.57,M.steel,1.5,1.5,bz-.05);cyl(.1,.13,.42,M.black,2.35,1.29,bz-.12);cyl(.15,.06,.22,M.chrome,2.35,1.6,bz-.12);
+box(4.6,.9,.55,M.walnut,bx,.45,-D/2+.35);box(4.6,.04,.58,M.steel,bx,.92,-D/2+.36);for(const y of [1.55,2])box(4.4,.035,.3,M.steel,bx,y,-D/2+.2);
+for(let i=0;i<9;i++)cyl(.08,.08,.26,i%3===0?M.ox:M.cream,.55+i*.46,1.7,-D/2+.2);
+for(let i=0;i<10;i++)cyl(.045,.055,.32,M.bottle,.6+i*.42,2.18,-D/2+.2,16); // 저녁 바용 보틀
+const logo=new THREE.Mesh(new THREE.PlaneGeometry(1.4,.7),new THREE.MeshStandardMaterial({map:logoT,transparent:true,metalness:.8,roughness:.3,emissive:"#6b4e22",emissiveIntensity:.3}));logo.position.set(bx,2.75,-D/2+.07);scene.add(logo);
+box(1.3,.03,.36,M.steel,4.95,1.15,1.2);box(1.3,.03,.36,M.steel,4.95,1.5,1.2);for(const x of [4.35,5.55])box(.03,1.5,.03,M.chrome,x,.75,1.2);
+for(const y of [1.15,1.5])for(let i=0;i<4;i++)cyl(.045,.035,.14,M.paper,4.5+i*.3,y+.085,1.2,16);
+for(const x of [3.05,3.65]){box(.04,1.1,.04,M.chrome,x,.55,2.35);const s=box(.42,.62,.03,new THREE.MeshStandardMaterial({color:"#0d0d0d",emissive:"#f2ebe0",emissiveIntensity:.25}),x,1.38,2.35);s.rotation.x=-.18}
+for(const x of [1.1,1.8,2.5]){cyl(.19,.19,.07,M.ox,x,.76,bz+.75);cyl(.025,.025,.72,M.chrome,x,.38,bz+.75,12);cyl(.18,.2,.02,M.chrome,x,.01,bz+.75)}
+const gb=new THREE.BoxGeometry(.19,.19,.1);for(let r=0;r<10;r++)for(let c=0;c<9;c++){const m=new THREE.Mesh(gb,M.glassBlock);m.position.set(-.05,.1+r*.2,-2.75+c*.2);m.rotation.y=Math.PI/2;scene.add(m)}
+const sofa=new THREE.Shape();sofa.absarc(0,0,1.9,Math.PI*1.05,Math.PI*1.95,false);sofa.absarc(0,0,1.35,Math.PI*1.95,Math.PI*1.05,true);
+const sg=new THREE.ExtrudeGeometry(sofa,{depth:.42,bevelEnabled:true,bevelSize:.05,bevelThickness:.05,curveSegments:40});sg.rotateX(-Math.PI/2);add(sg,M.olive,-3.2,0,-.65);
+const bk=new THREE.Shape();bk.absarc(0,0,1.95,Math.PI*1.05,Math.PI*1.95,false);bk.absarc(0,0,1.7,Math.PI*1.95,Math.PI*1.05,true);
+const bg2=new THREE.ExtrudeGeometry(bk,{depth:.95,bevelEnabled:true,bevelSize:.05,bevelThickness:.05,curveSegments:40});bg2.rotateX(-Math.PI/2);add(bg2,M.olive,-3.2,0,-.65);
+function chair(x,z,ry){const g=new THREE.Group();g.position.set(x,0,z);g.rotation.y=ry;scene.add(g);const s=new THREE.Mesh(new THREE.BoxGeometry(.42,.06,.42),M.ox);s.position.y=.46;s.castShadow=true;g.add(s);
+ const b=new THREE.Mesh(new THREE.BoxGeometry(.42,.3,.05),M.ox);b.position.set(0,.72,-.2);b.castShadow=true;g.add(b);
+ const cv=new THREE.CatmullRomCurve3([[-.2,.02,.22],[-.2,.02,-.2],[-.2,.44,-.2],[-.2,.44,.2]].map(p=>new THREE.Vector3(...p)),false,"catmullrom",.05);
+ for(const sx of [1,-1]){const t=new THREE.Mesh(new THREE.TubeGeometry(cv,30,.014,8),M.chrome);t.scale.x=sx;g.add(t)}}
+function rt(x,z,r){cyl(r,r,.05,M.trav,x,.74,z);cyl(.12,.2,.72,M.trav,x,.36,z,32)}
+rt(-3.2,-2.05,.38);rt(-4.35,-1.4,.32);rt(-2.05,-1.4,.32);
+box(4.6,.05,.45,M.walnut,-2.9,1.05,fz-.35);for(const x of [-5.1,-.7])box(.04,1.05,.04,M.chrome,x,.52,fz-.35);
+for(const x of [-4.8,-4,-3.2,-2.4,-1.6]){cyl(.17,.17,.06,M.ox,x,.76,fz-.85);cyl(.022,.022,.73,M.chrome,x,.37,fz-.85,12);cyl(.17,.18,.02,M.chrome,x,.01,fz-.85)}
+for(const [x,z] of [[-4.4,.7],[-2.4,.7]]){rt(x,z,.3);chair(x,z-.55,0);chair(x,z+.55,Math.PI)}
+const arch=new THREE.Shape();arch.moveTo(-.55,0);arch.lineTo(.55,0);arch.lineTo(.55,1.3);arch.absarc(0,1.3,.55,0,Math.PI,false);arch.lineTo(-.55,0);
+const am=add(new THREE.ShapeGeometry(arch,32),M.mirror,-W/2+.07,1,.9);am.rotation.y=Math.PI/2;
+box(.9,.55,.4,M.walnut,-4.9,.28,-2.6);box(.42,.08,.34,M.black,-4.9,.6,-2.6);
+cyl(.28,.22,.5,M.trav,-.6,.25,2.2);cyl(.03,.04,1.3,M.walnut,-.6,1.1,2.2,8);for(let i=0;i<9;i++)add(new THREE.IcosahedronGeometry(.22+rnd()*.14,0),M.leaf,-.6+(rnd()-.5)*.7,1.55+rnd()*.65,2.2+(rnd()-.5)*.6);
+const art=tex(300,400,(g,w,h)=>{g.fillStyle="#efe7da";g.fillRect(0,0,w,h);g.fillStyle="#6e2a22";g.beginPath();g.arc(w*.45,h*.42,80,0,7);g.fill();g.fillStyle="#59613a";g.fillRect(w*.2,h*.62,w*.6,40);g.fillStyle="#c9a46a";g.fillRect(w*.58,h*.2,18,h*.5)});
+add(new THREE.PlaneGeometry(.9,1.2),new THREE.MeshStandardMaterial({map:art,roughness:.9}),-3.2,2,-D/2+.08);box(.96,1.26,.03,M.walnut,-3.2,2,-D/2+.06);
+scene.add(new THREE.HemisphereLight("#fff3e2","#3a2c22",.45));const key=new THREE.DirectionalLight("#ffe9cc",.55);key.position.set(2,9,10);key.castShadow=true;key.shadow.mapSize.set(2048,2048);Object.assign(key.shadow.camera,{left:-7,right:7,top:5,bottom:-5});key.shadow.bias=-.0004;scene.add(key);
+[[-3.2,-2.05],[-4.4,.7],[-2.4,.7],[1.3,-.2],[2.4,-.2],[3.5,-.2]].forEach(([x,z])=>{cyl(.004,.004,1.05,M.black,x,H-.52,z,4);const o=add(new THREE.SphereGeometry(.16,32,20),M.opal,x,H-1.24,z);o.castShadow=false;const l=new THREE.PointLight("#ffc98a",2.4,4.5,2);l.position.set(x,H-1.3,z);scene.add(l)});
+for(const x of [-4,0,4]){const l=new THREE.PointLight("#ffd3a0",1.4,6,2);l.position.set(x,H-.2,-D/2+.5);scene.add(l)}
+function label(t,s,x,y,z){const el=document.createElement("div");el.className="lab3d";el.innerHTML=`<b>${t}</b><span>${s}</span>`;const o=new CSS2DObject(el);o.position.set(x,y,z);scene.add(o)}
+label("① 픽업 존 → 저녁엔 바","곡선 스테인리스 바 · 키오스크 → 바 → 픽업",3.2,2.15,.9);label("② 라운지","올리브 벨벳 소파 · 트래버틴 테이블 · 22석",-3.4,1.75,-.4);label("③ 글라스 블록","빛이 비치는 사진 포인트",-.05,2.35,-1.95);
+const views={overview:[[6.5,8.2,9.2],[0,.6,0]],entrance:[[3.4,1.6,5.4],[1.2,1.1,-1.4]],bar:[[1,1.65,2.2],[2.6,1.2,-1.8]],seats:[[-1.2,1.5,2.3],[-3.4,.9,-1.4]],lounge:[[-1.5,1.4,.2],[-4.6,1.3,-1.8]]};
+let tw=null;function go(n){const [p,t]=views[n];tw={p0:camera.position.clone(),t0:controls.target.clone(),p1:new THREE.Vector3(...p),t1:new THREE.Vector3(...t),s:performance.now()};host.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("on",b.dataset.view===n))}
+const rotBtn=document.getElementById("rot3d"),syncRot=()=>rotBtn.classList.toggle("on",controls.autoRotate);
+host.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>{controls.autoRotate=false;syncRot();go(b.dataset.view)}));
+rotBtn.addEventListener("click",()=>{controls.autoRotate=!controls.autoRotate;syncRot()});controls.autoRotate=true;controls.autoRotateSpeed=.7;syncRot();controls.addEventListener("start",()=>{tw=null});
+camera.position.set(...views.overview[0]);controls.target.set(...views.overview[1]);
+function resize(){const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h);labelR.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix()}new ResizeObserver(resize).observe(host);resize();
+let vis=false;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(host);
+renderer.setAnimationLoop(()=>{if(!vis)return;if(tw){const k=Math.min(1,(performance.now()-tw.s)/900),e=1-Math.pow(1-k,3);camera.position.lerpVectors(tw.p0,tw.p1,e);controls.target.lerpVectors(tw.t0,tw.t1,e);if(k>=1)tw=null}controls.update();renderer.render(scene,camera);labelR.render(scene,camera)});
+host.dataset.ready="1";
+</script>
+</body></html>
